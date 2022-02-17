@@ -39,3 +39,7 @@ def upload():
 @app.route("/result/<img>")
 def result(img):
     return render_template("result.html", cols=cols, content=get_text(str(img), cols))
+
+
+if __name__ == "__main__":
+    app.run()
