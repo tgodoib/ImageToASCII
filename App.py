@@ -8,7 +8,7 @@ app.config['UPLOAD_FOLDER'] = "./images"
 
 cols = 125
 
-ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
 
 
 def allowed_file(filename):

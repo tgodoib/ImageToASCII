@@ -1,12 +1,13 @@
 import os
-
-from PIL import Image, ImageDraw, ImageFont
 import math
+from PIL import Image, ImageDraw, ImageFont
 from operator import add
 
 
 class Node:
-
+    """
+    Binary tree used to store the chosen characters based on their density
+    """
     def __init__(self, d, c):
 
         self.density = d
@@ -45,11 +46,23 @@ class Node:
             return self.right.search(d)
 
 
-def stretch(v, min, max):
+def map_to_255(v, min, max):
+    """
+    :param v: Value to be converted
+    :param min: Min value in old scale
+    :param max: Max value in old scale
+    :return: Value in the new scale
+    """
     return 255 * ((v - min) / (max - min))
 
 
 def gen_densities():
+    """
+    For every char in the chosen range (33 to 127 and 192 to 256), generates
+    a 10px by 10px image with it written. Then it calculates the average brightness
+    and stores it in the binary tree.
+    :return: ([(char, density)], min_value, max_value)
+    """
     den = []
 
     for i in (list(range(33, 127)) + list(range(192, 256))):
@@ -61,7 +74,6 @@ def gen_densities():
         density = 0
         for j in range(100):
             density += im.getpixel((j % 10, math.floor(j / 10)))[2] / 100
-        # print(chr(i), density)
         den.append((chr(i), density))
 
     den_s = sorted(den, key=lambda x: x[1])
@@ -69,6 +81,13 @@ def gen_densities():
 
 
 def calc_brightness(im, i, j, square_size):
+    """
+    :param im: Image being converted
+    :param i: x index
+    :param j: y index
+    :param square_size: the sample size
+    :return: Brightness of the region beginning in (i, j) with length square_size
+    """
     color = [0, 0, 0]
     i = square_size*i
     j = square_size*j
@@ -81,10 +100,15 @@ def calc_brightness(im, i, j, square_size):
 
 
 def get_text(img, cols):
-    chars, mi, ma = gen_densities()
-    tree = Node(stretch(chars[0][1], mi, ma), chars[0][0])
+    """
+    :param img: Image being converted
+    :param cols: How many chars should be in one line
+    :return: An array containing the lines of the text
+    """
+    chars, min_brightness, max_brightness = gen_densities()
+    tree = Node(map_to_255(chars[0][1], min_brightness, max_brightness), chars[0][0])
     for c in chars:
-        tree.insert(stretch(c[1], mi, ma), c[0])
+        tree.insert(map_to_255(c[1], min_brightness, max_brightness), c[0])
 
     im = Image.open("images/" + img)
     im = im.resize((500, int((500 / im.size[0]) * im.size[1])), Image.ANTIALIAS)
