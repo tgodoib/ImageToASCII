@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Imagem Para ASCII</title>
+    <style>
+        html, body {
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            display: flex;
+            align-items: center;
+            font-family: 'Trebuchet MS', sans-serif;
+        }
+        form {
+            width: 300px;
+            margin: auto;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        input {
+            display: block;
+        }
+
+        #btn {
+            background-color: white;
+            border: solid black 2px;
+            outline: none;
+            color: black;
+            text-align: center;
+            width: 50%;
+            border-radius: 10px;
+            padding: 5px 2px;
+        }
+
+        #select {
+            margin: 100px 0;
+        }
+    </style>
+</head>
+<body>
+
+<form method=post enctype=multipart/form-data>
+    <h1>Imagem Para ASCII</h1>
+    <input id="select" type=file name=file>
+    <input id="btn" type=submit value="Converter Imagem">
+</form>
+
+</body>
+</html>

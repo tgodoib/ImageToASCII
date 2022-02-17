@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Imagem Para ASCII</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            background-color: black;
+        }
+        .canvas {
+            font-family: 'Ubuntu Mono', monospace;
+            font-size: 13px;
+            width: {{cols * 1.3}}ch;
+            height: 100%;
+            color: white;
+            margin: auto;
+
+            letter-spacing: 0.3ch;
+            line-height: 1.3ch;
+        }
+
+        .canvas p {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="canvas">
+    {% for line in content %}
+        <p>{{line}}</p>
+    {% endfor %}
+    </div>
+</body>
+</html>
