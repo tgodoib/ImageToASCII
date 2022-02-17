@@ -87,7 +87,7 @@ def get_text(img, cols):
         tree.insert(stretch(c[1], mi, ma), c[0])
 
     im = Image.open("images/" + img)
-    im.thumbnail((500, 500), Image.ANTIALIAS)
+    im = im.resize((500, int((500 / im.size[0]) * im.size[1])), Image.ANTIALIAS)
 
     square_size = im.size[0] // cols
     lines = im.size[1] // square_size
