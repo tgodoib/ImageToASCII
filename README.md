@@ -36,7 +36,7 @@ This calculation is done the same way we did for the rendered characters.
 Once we have the regions brightness, we just have to search the characters
 with the closest brightness in the binary tree and print it out!
 
-##Some considerations
+## Some considerations
 - When printing out the characters, its important they're displayed in 
 a monospace font
 - Preferably, the line height should match the characters width so the aspect ratio is preserved
