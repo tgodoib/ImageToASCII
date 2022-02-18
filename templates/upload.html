@@ -45,8 +45,11 @@
 <body>
 
 <form method=post enctype=multipart/form-data>
+    {% if error %}
+        <h1 style="color: indianred;">{{ error }}</h1>
+    {% endif %}
     <h1>Imagem Para ASCII</h1>
-    <input id="select" type=file name=file>
+    <input id="select" type=file name=file accept=".png,.jpg,.jpeg">
     <input id="btn" type=submit value="Converter Imagem">
 </form>
 

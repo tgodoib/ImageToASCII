@@ -32,6 +32,9 @@ def upload():
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             return redirect("/result/" + filename)
 
+        if not allowed_file(file.filename):
+            return render_template("upload.html", error="Formato Inválido")
+
     else:
         return render_template("upload.html")
 
