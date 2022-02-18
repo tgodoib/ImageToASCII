@@ -1,2 +1,4 @@
 .idea/
 venv/
+imagetoascii.ini
+__pycache__/
